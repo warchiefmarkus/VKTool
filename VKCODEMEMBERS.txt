@@ -1,0 +1,23 @@
+var group_id = Args.gid;
+var offset = parseInt(Args.offset); 
+var members = API.groups.getMembers({"group_id": group_id , "sort": "id_asc", "count": "1000", "offset":offset, "fields":"sex, photo_id, photo_50, photo_100, likes"}).users;
+var size = (offset + 1000);
+var tmp;
+
+
+while (size < (offset+25000))
+{
+tmp = API.groups.getMembers({"group_id": group_id , "sort": "id_asc", "count": "1000", "offset": size, "fields":"sex, photo_id, photo_50, photo_100, online"});   
+
+members = members + tmp.users;
+
+
+if (tmp.count<1000){ 
+    
+    size = (offset+25000);
+};
+
+size = (size + 1000);
+
+};
+return members;

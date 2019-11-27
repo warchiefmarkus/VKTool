@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/horiz_black.png</file>
+        <file>images/horiz_black.svg</file>
+        <file>images/like.png</file>
+        <file>images/like.svg</file>
+        <file>images/liked.png</file>
+        <file>images/liked.svg</file>
+        <file>images/new.png</file>
+        <file>images/print.png</file>
+        <file>images/save.png</file>
+        <file>images/search.svg</file>
+        <file>images/undo.png</file>
+        <file>qml/graph.qml</file>
+        <file>qml/groupList.qml</file>
+        <file>qml/membersList.qml</file>
+        <file>qml/menu.qml</file>
+        <file>qml/URLQuery.js</file>
+        <file>qml/usersView.qml</file>
+        <file>qml/variableExplorer.qml</file>
+        <file>qml/XHR.js</file>
+        <file>qml/filter.qml</file>
+    </qresource>
+</RCC>

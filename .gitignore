@@ -1,0 +1,15 @@
+*.exe
+*.dll
+*.obj
+*.o
+*.rc
+*.ini
+log
+Makefile
+*.debug
+*.release
+*.user
+*.stash
+moc_*
+/cacheDir/*
+/Python/*

@@ -1,0 +1,69 @@
+----------------------membersVK----------------
+var group_id = Args.gid;
+var offset = parseInt(Args.offset); 
+var members = API.groups.getMembers({"group_id": group_id , "sort": "id_asc", "count": "1000", "offset":offset, "fields":"sex"}).users;
+var size = (offset + 1000);
+var tmp;
+
+while (size < (offset+25000))
+{
+tmp = API.groups.getMembers({"group_id": group_id , "sort": "id_asc", "count": "1000", "offset": size, "fields":"sex"});   
+
+members = members + tmp.users;
+
+
+if (tmp.count<1000){ 
+    
+    size = (offset+25000);
+};
+
+size = (size + 1000);
+
+};
+return members;
+ 
+-------------------------------------------------
+--------------------------getGPID----------------
+var user_ids = Args.user_ids.split(",");
+var members; 
+while (user_ids.length>0)
+{
+    if ((user_ids.length-1000)<0){
+        members =  members + API.users.get({"user_ids": user_ids , "fields":"photo_id"})@.photo_id;
+    user_ids.splice(0,user_ids.length);
+    }else{
+         members =  members + API.users.get({"user_ids": user_ids.slice(0,1000) , "fields":"photo_id"})@.photo_id;
+    user_ids.splice(0,1000);
+    }
+    
+};
+
+return members;
+---------------------------------------------------
+---------------getPinf----------------------
+var p_ids = Args.p_ids.split(",");
+var photos=[]; 
+var members=[];
+
+while (p_ids.length>0)
+{
+    if ((p_ids.length-1000)<0){
+        
+        members =  members + API.photos.getById({"photos": p_ids , "extended":"1"})@.likes;
+    p_ids.splice(0,p_ids.length);
+    }else{
+         members =  members + API.photos.getById({"photos": p_ids.slice(0,1000) , "extended":"1"})@.likes;
+    p_ids.splice(0,1000);
+    }
+};
+//members = API.photos.getById({"photos": p_ids , "extended":"1"})@.likes;
+
+var counter=0;
+while (counter<members.length)
+{
+    photos.push(members[counter].user_likes);
+    counter= counter+1;
+}
+
+return photos;
+------------------------------------------------------
